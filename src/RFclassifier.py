@@ -108,5 +108,5 @@ while(len(select)>1):
     print('### Best AUC :', len(select), round(best_auc, 3), round(roc_auc, 3))
 
 
-#pickle.dump([SEED, best_auc, best_features, best_plot_data, feature_rank], open('/Test_outs_'+ds+'501.pkl, 'wb'))
+#pickle.dump([SEED, best_auc, best_features, best_plot_data, feature_rank], open('data/Test_asvs_'+ds+'501.pkl, 'wb'))
 
