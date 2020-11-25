@@ -88,7 +88,7 @@ def dataset_reader(ds='an'): # ds: an, ca ,cn
     data = data_sub
     data = data.iloc[:, 1:]
     ### read features
-    SEED, best_auc, best_features, best_plot_data, feature_rank = pickle.load(open('Test_outs_'+ds+'501.pkl', 'rb'))
+    SEED, best_auc, best_features, best_plot_data, feature_rank = pickle.load(open('data/Test_asvs_'+ds+'501.pkl', 'rb'))
     data = data.loc[:, best_features]
     return study_ids, control_state, data
 
