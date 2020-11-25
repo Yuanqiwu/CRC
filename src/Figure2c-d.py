@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 import cloudpickle as pickle
 
 ## plot ROC
-SEED, best_auc, best_features, best_plot_data, feature_rank = pickle.load(open('data/Test_outs_'+ds+'501.pkl', 'rb'))
+SEED, best_auc, best_features, best_plot_data, feature_rank = pickle.load(open('data/Test_asvs_'+ds+'501.pkl', 'rb'))
 lines, mean_fpr, mean_tpr, tprs, std_auc = best_plot_data
 font1 = {'family' : 'Arial','weight' : 'normal','size': 12}
 font2 = {'family' : 'Arial','weight' : 'normal','size': 16}
@@ -39,3 +39,4 @@ plt.yticks(fontproperties = 'Arial', size = 13)
 plt.xticks(fontproperties = 'Arial', size = 13)
 plt.show()
 fig.savefig('figure/Figure2c.pdf',dpi=300,format='pdf')
+
