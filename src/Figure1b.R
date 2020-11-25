@@ -101,7 +101,7 @@ g.g.2 <- df.plot %>%
         panel.background = element_rect(fill='white', color='black'),
         panel.grid = element_blank())
 
-pdf('Figures/Figure1b.pdf', useDingbats = FALSE)
+pdf('figure/Figure1b.pdf', useDingbats = FALSE)
 a <- plot_grid(g.main, g.s.2, g.g.2, g.s.1, NULL,NULL,g.g.1, NULL, NULL,
                nrow=3,
                rel_widths = c(0.8, 0.2, 0.2), rel_heights = c(0.8, 0.2, 0.2))
