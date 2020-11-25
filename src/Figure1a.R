@@ -48,7 +48,7 @@ g2 <- df.plot.study %>%
                   breaks=c(1e-05, 1e-03, 1e-02)) +
   guides( size = "legend", colour='legend')
 
-ggsave(g2, filename = 'Figure/Figure1a.pdf',
+ggsave(g2, filename = 'figure/Figure1a.pdf',
        width = 6, height = 6)
 
 cat('Successfully computed confounder effects in',
