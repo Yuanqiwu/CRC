@@ -1,6 +1,9 @@
-##CRC confounder 
-
 # ##############################################################################
+#
+##  Figure 1a confounder
+#
+# ##############################################################################
+
 #  variance explained by confounders
 ss.disease <- apply(CRC_relative, 1, FUN=function(x, label){
   rank.x <- rank(x)/length(x)
