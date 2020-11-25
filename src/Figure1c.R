@@ -33,5 +33,5 @@ g <- ggplot(melt(L2_bar, id.vars = 'Phylum'), aes(x=variable, y=value, fill=Phyl
         panel.background = element_rect(fill=NULL, colour = 'white')) 
 
 facet_grid(. ~ drv)
-ggsave(g, filename = 'Figure/Figure1c.pdf', 
+ggsave(g, filename = 'figure/Figure1c.pdf', 
        width = 5.5, height = 6, useDingbats=FALSE)
