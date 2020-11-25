@@ -1,0 +1,66 @@
+function,normal_versus_adenoma_p,adenoma_versus_cancer_p,control_versus_adenoma_fc,adenoma_versus_cancer_fc
+allantoin degradation to glyoxylate III,0.110357045,0.004022228,9.65E-05,0.088340333
+4-aminobutanoate degradation V,0.008788147,0.00044433,0.068410265,0.111110874
+S-adenosyl-L-methionine cycle I,0.368446965,0.022169392,-0.012561751,-0.029299677
+L-lysine biosynthesis VI,0.241867467,0.030659501,-0.001449605,-0.014297155
+superpathway of L-aspartate and L-asparagine biosynthesis,0.023473274,0.379318148,-0.013465744,0.002794618
+superpathway of L-methionine biosynthesis (by sulfhydrylation),0.007468943,0.901897791,0.076052495,0.012453929
+L-histidine degradation I,0.768669474,0.036544091,-0.056532069,0.131869435
+L-glutamate degradation V (via hydroxyglutarate),0.003122536,1.73E-05,0.041986072,0.18244492
+L-lysine fermentation to acetate and butanoate,0.15775994,8.47E-06,-0.032078198,0.188227667
+toluene degradation I (aerobic) (via o-cresol),0.001209562,0.993833321,-0.03239764,-0.022372052
+toluene degradation II (aerobic) (via 4-methylcatechol),0.001209562,0.993833321,-0.03239764,-0.022372052
+CMP-legionaminate biosynthesis I,0.934935445,0.011621216,0.009165388,-0.080543543
+GDP-D-glycero-alpha-D-manno-heptose biosynthesis,0.001651335,0.017502414,0.041979066,-0.052140735
+ADP-L-glycero-beta-D-manno-heptose biosynthesis,0.003007269,0.65987186,0.0801998,0.035223887
+lactose and galactose degradation I,0.000804702,0.68015076,-0.118375901,0.012427539
+D-glucarate degradation I,0.190874956,0.00633679,0.038657989,0.136262653
+poly(glycerol phosphate) wall teichoic acid biosynthesis,0.724710564,0.041001521,-0.041119505,-0.064699678
+peptidoglycan biosynthesis IV (Enterococcus faecium),0.38817761,0.022794387,-0.002308334,-0.055458973
+superpathway of menaquinol-8 biosynthesis II,0.048326824,0.55006133,-0.004062419,0.019579271
+adenosylcobalamin biosynthesis I (anaerobic),0.045737558,0.944303651,0.038525207,0.024222252
+superpathway of thiamine diphosphate biosynthesis II,0.077597142,0.005452568,0.028884047,0.05674787
+thiazole biosynthesis II (aerobic bacteria),0.428766879,0.00063518,0.01435424,0.08457456
+superpathway of demethylmenaquinol-6 biosynthesis I,0.600968398,0.005998993,-0.002794494,0.110313031
+superpathway of demethylmenaquinol-9 biosynthesis,0.600380752,0.006137004,-0.002506203,0.110571114
+heme b biosynthesis II (oxygen-independent),0.204130945,0.001240614,0.035214668,0.112570436
+"cob(II)yrinate a,c-diamide biosynthesis I (early cobalt insertion)",0.129727559,0.022040683,0.071024907,0.119399655
+superpathway of heme b biosynthesis from uroporphyrinogen-III,0.400361583,0.010346789,0.019474291,0.133081617
+superpathway of heme b biosynthesis from glutamate,0.395782869,3.10E-05,0.04938632,0.150374822
+superpathway of menaquinol-6 biosynthesis I,0.951232442,0.002453922,0.039426196,0.157967186
+superpathway of menaquinol-10 biosynthesis,0.951232442,0.002453922,0.039426196,0.157967186
+superpathway of menaquinol-9 biosynthesis,0.951630247,0.002507925,0.039238322,0.158477523
+heme b biosynthesis I (aerobic),0.405933051,2.87E-05,0.060236698,0.160574793
+"1,4-dihydroxy-6-naphthoate biosynthesis II",0.04910711,0.480769605,-0.006835576,0.009246315
+"1,4-dihydroxy-6-naphthoate biosynthesis I",0.000221198,0.113161663,0.063158142,-0.043876865
+aerobic respiration I (cytochrome c),0.007109964,0.231595415,0.041717264,-0.053018681
+palmitate biosynthesis II (bacteria and plant cytoplasm),0.307951535,0.024445465,0.024253569,-0.023920791
+CDP-diacylglycerol biosynthesis I,0.271005203,0.04916894,-0.003045366,-0.016447093
+CDP-diacylglycerol biosynthesis II,0.271005203,0.04916894,-0.003045366,-0.016447093
+fatty acid beta-oxidation I (generic),0.879533554,0.017592458,0.049776144,0.152735237
+"hexitol fermentation to lactate, formate, ethanol and acetate",0.02382471,0.948768563,-0.080074432,0.007094611
+pyruvate fermentation to acetone,0.175564224,0.046015572,-0.033352339,0.023297261
+succinate fermentation to butanoate,0.021600253,0.001241172,0.035523039,0.09257979
+glycerol degradation to butanol,0.868675491,0.029336234,-0.013187341,0.106354806
+superpathway of Clostridium acetobutylicum acidogenic fermentation,0.824089756,0.036336886,0.021399265,0.12587515
+pyruvate fermentation to butanoate,0.824556853,0.035651093,0.021589125,0.127931566
+"(S)-propane-1,2-diol degradation",0.145014236,3.69E-08,-0.065759117,0.250074656
+nitrate reduction VI (assimilatory),0.701845776,0.003085767,0.00732431,-0.086414102
+urea cycle,0.012710624,0.655498887,0.044247473,0.011729732
+methylphosphonate degradation I,0.083861251,0.008681634,0.002067522,0.121721778
+assimilatory sulfate ,0.048182311,0.637947067,0.043588152,0.000421339
+adenine and adenosine salvage III,0.0207773,0.41339479,-0.009752266,-0.013024648
+superpathway of adenosine nucleotides de novo biosynthesis II,0.018589068,0.544657553,0.003022707,-0.006751361
+pyrimidine deoxyribonucleotides de novo biosynthesis III,0.100692378,0.011864645,0.017544194,-0.006343855
+adenosine deoxyribonucleotides de novo biosynthesis II,0.007998317,0.42272415,0.005417356,0.000834261
+guanosine deoxyribonucleotides de novo biosynthesis II,0.007998317,0.42272415,0.005417356,0.000834261
+purine nucleobases degradation I (anaerobic),0.650588486,0.007788722,0.012369444,0.030463092
+taxadiene biosynthesis (engineered),0.031683833,0.675439841,0.040683233,0.051820944
+anhydromuropeptides recycling I,0.001835307,0.608327882,-0.013068347,0.019689001
+superpathway of hexitol degradation (bacteria),0.018623521,0.568865147,-0.055966735,0.024492175
+superpathway of chorismate metabolism,0.280096703,0.015941786,0.09275129,0.200275995
+superpathway of glycolysis and the Entner-Doudoroff pathway,0.018743203,0.996596576,0.030548259,0.041574478
+"superpathway of histidine, purine, and pyrimidine biosynthesis",0.02648382,0.908229226,0.030763043,0.023548355
+partial TCA cycle (obligate autotrophs),0.991949234,0.035706997,0.013959307,0.046960044
+TCA cycle VI (Helicobacter),0.986044682,0.049142171,0.026104113,0.106877543
+a,1,1,-0.250074656,-0.250074656
