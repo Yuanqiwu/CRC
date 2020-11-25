@@ -37,11 +37,11 @@ def set_tune_params(max_features=[1.0], max_samples=[1.0], cpu=2):
                          'n_estimators': [501],
                          'max_features':max_features,
                          'max_samples':max_samples,
-                         'bootstrap_features':[True], # 随机置换feature
-                         'bootstrap':[True], # 随机置换sample
+                         'bootstrap_features':[True], # permute features
+                         'bootstrap':[True], # permute samples
                          'oob_score': [True],
                          'random_state': [0],
-                         'n_jobs':[cpu], # CPU核数，可在大机器上添加核数加速运算
+                         'n_jobs':[cpu], # CPU cores
                         }],
 
         'RandomForest':['ensemble.RandomForestClassifier()', 'roc_auc', 
@@ -50,7 +50,7 @@ def set_tune_params(max_features=[1.0], max_samples=[1.0], cpu=2):
                          'max_features':max_features,
                          'max_samples':max_samples,
                          #'min_samples_leaf':[1, 2, 3],
-                         'max_depth': [1, 2, 3], # 防止过拟合，减少max_depth
+                         'max_depth': [1, 2, 3], # avoid，reduce max_depth
                          'oob_score': [True],
                          'random_state': [0],
                          'n_jobs':[cpu],
@@ -58,16 +58,16 @@ def set_tune_params(max_features=[1.0], max_samples=[1.0], cpu=2):
         }
     return tune_params
 
-### 模型优化，选择最优超参数
+### Model optimization
 def tune_model(X, y, cv_split, model, param_grid, scoring='roc_auc'):
-    #basic model 基础模型训练（默认超参数）
+    #basic model training
     basic_model = eval(model)
     basic_results = model_selection.cross_validate(basic_model, X, y, cv=cv_split, scoring = scoring, return_train_score=True)
-    #tune model 模型优化 (超参数网格遍历)
+    #tune model optimization
     tune_model = model_selection.GridSearchCV(eval(model), param_grid=param_grid, 
                                               scoring = scoring, cv=cv_split, return_train_score=True)
     _ = tune_model.fit(X, y)
-    ### 获取最优超参数，并建模
+    ### optimized parameter
     best_param = tune_model.best_params_
     final_model = eval(model).set_params(**best_param)
     final_results = model_selection.cross_validate(final_model, X, y, cv=cv_split, scoring = scoring, return_train_score=True)
@@ -76,7 +76,7 @@ def tune_model(X, y, cv_split, model, param_grid, scoring='roc_auc'):
             tune_model.cv_results_['mean_train_score'][tune_model.best_index_], 
             tune_model.cv_results_['mean_test_score'][tune_model.best_index_]]
 
-### 导入数据
+### import data
 def dataset_reader(ds='an'): # ds: an, ca ,cn
     study_ids = ['6070', '290926', '389927'] if ds!='ca' else ['6070', '290926', '362366', '389927']
     rm_state = 'C' if ds=='an' else ('A' if ds=='cn' else 'N')
@@ -92,16 +92,16 @@ def dataset_reader(ds='an'): # ds: an, ca ,cn
     data = data.loc[:, best_features]
     return study_ids, control_state, data
 
-### self建模
+### self model
 def model_self(data, study, control_state, model, scoring, param_grid):
     index = np.array([i.split('-')[1] for i in data.index])==study
     X = data.loc[index, :].values
     y = np.array([0 if i[0]==control_state else 1 for i in data.loc[index, :].index])
     nor = preprocessing.MinMaxScaler()
     X[:, -3:] = nor.fit_transform(X[:, -3:])
-    ### cross validate 设置
+    ### cross validate 
     cv_split = list(model_selection.StratifiedKFold(n_splits=5, random_state = RANDOM_SEED).split(X, y))
-    ### 模型优化
+    ### optimize
     tune_results = tune_model(X, y, cv_split, model, param_grid, scoring)
     return tune_results, 0.0
 
@@ -118,7 +118,7 @@ def model_cross_study(model, data, study_train, study_test, control_state):
     nor = preprocessing.MinMaxScaler()
     X_train[:, -3:] = nor.fit_transform(X_train[:, -3:])
     X_test[:, -3:] = nor.transform(X_test[:, -3:])
-    # 使用最优模型重新训练全部训练数据，并在测试数据中验证
+    # optimized model Test
     model.fit(X_train, y_train)
     probas = model.predict_proba(X_test)
     fpr, tpr, thresholds = metrics.roc_curve(y_test, probas[:, 1])
@@ -136,21 +136,21 @@ def model_LODO(data, study_ids, study, control_state, model, scoring, param_grid
     nor = preprocessing.MinMaxScaler()
     X_train[:, -3:] = nor.fit_transform(X_train[:, -3:])
     X_test[:, -3:] = nor.transform(X_test[:, -3:]) 
-    # 使用训练数据进行cross-validation, 并挑选最优模型
-    ### cross validate 设置 【原来的训练数据分为train和valid】
-    ### Cross-validation between studies 【在LODO中，为了使模型捕获study之间的批次效应，验证设置采用不同stud数据，即训练和验证从不同study中抽取】
-    train_ids = data.index[train_index] # cross-validation只在训练数据中进行
+    # cross-validation
+    ### cross validate 
+    ### Cross-validation between studies 
+    train_ids = data.index[train_index] 
     cv_split = []
-    for valid_study in set(study_ids)-set([study]): # 设置验证study
-        train_index = np.arange(len(train_ids))[np.array([i.split('-')[1] for i in train_ids])!=valid_study] # 训练数据来源
-        valid_index = np.arange(len(train_ids))[np.array([i.split('-')[1] for i in train_ids])==valid_study] # 验证数据来源
-        for rt in range(cv_per_study): # 每个study抽取N次随机样本，构建训练验证数据
-            cv_split.append([np.random.choice(train_index, int(len(train_index)*cv_ratio)),  # 每次仅使用0.8的样本
+    for valid_study in set(study_ids)-set([study]): # validation study
+        train_index = np.arange(len(train_ids))[np.array([i.split('-')[1] for i in train_ids])!=valid_study] # Traning data
+        valid_index = np.arange(len(train_ids))[np.array([i.split('-')[1] for i in train_ids])==valid_study] # Validation data
+        for rt in range(cv_per_study): 
+            cv_split.append([np.random.choice(train_index, int(len(train_index)*cv_ratio)), 
                              np.random.choice(valid_index, int(len(valid_index)*cv_ratio))])
-    #cv_split = model_selection.StratifiedKFold(n_splits=5, shuffle=True, random_state=RANDOM_SEED) # 随机的cv方式，结果差一些
-    ### 模型优化
+    #cv_split = model_selection.StratifiedKFold(n_splits=5, shuffle=True, random_state=RANDOM_SEED) 
+    ### model optimization
     tune_results = tune_model(X_train, y_train, cv_split, model, param_grid, scoring)
-    # 使用最优模型重新训练全部训练数据，并在测试数据中验证
+    # best model Test
     probas = tune_results[0].fit(X_train, y_train).predict_proba(X_test)
     fpr, tpr, thresholds = metrics.roc_curve(y_test, probas[:, 1])
     score = metrics.auc(fpr, tpr)
@@ -166,11 +166,11 @@ def model_one_dataset(ds, methods, max_features, max_samples, cpu, outfile):
     for study_i in study_ids:
         for model_name in methods:
             model, scoring, param_grid = tune_params[model_name]
-            # 首先5fold cross-validation测试自身效果，并确定最优模型超参数
+            # 5fold cross-validation
             [final_model, params, valid_scores, 
              basic_train_score, basic_valid_score, 
              tune_train_score, tune_valid_score], test_score = model_self(data, study_i, control_state, model, scoring, param_grid)
-            # 使用最优模型测试其他study数据
+            # best model Test
             scores = []
             for study_j in study_ids:
                 score = model_cross_study(final_model, data, study_i, study_j, control_state)
@@ -192,7 +192,6 @@ def model_one_dataset(ds, methods, max_features, max_samples, cpu, outfile):
     for study in study_ids:
         for model_name in methods:
             model, scoring, param_grid = tune_params[model_name]
-            # 在训练数据测试模型，确定最优模型超参数，最后在测试数据中测试
             [final_model, params, valid_scores, 
              basic_train_score, basic_valid_score, 
              tune_train_score, tune_valid_score], test_score = model_LODO(data, study_ids, study, control_state, model, scoring, param_grid)
