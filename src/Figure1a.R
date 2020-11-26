@@ -19,7 +19,7 @@ t.mean <- apply(CRC_relative, 1, mean, trim=0.1)
 
 # plot study
 alpha.meta <- 0.05
-CRC_plot.all <- read.csv('Figure1a',row.names = 1,header=TRUE,
+CRC_plot.all <- read.csv('data/Figure1a',row.names = 1,header=TRUE,
                             stringsAsFactors = FALSE,check.names = FALSE)
 df.plot.study <- CRC_plot.all %>%
   gather(key=type, value=meta, -species, -disease,
