@@ -1,8 +1,0 @@
-numpy==1.15.4
-pandas==0.23.4
-scipy==1.1.0
-matplotlib==3.0.2
-seaborn==0.9.0
-scikit_learn==0.20.1
-cloudpickle==0.6.1
-mkl_random==1.0.2
